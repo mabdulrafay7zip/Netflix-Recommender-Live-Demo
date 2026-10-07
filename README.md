@@ -6,7 +6,7 @@ interactive **Streamlit** web app. Pick any title and instantly get the most
 similar titles, each with a match score, type, year, rating, genres and
 director/country details.
 
-**Live Demo:** (deployed on Streamlit Cloud)
+Live Demo: https://mabdulrafay7zip.github.io/Netflix-Recommender-Live-Demo/
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-app-FF4B4B)
