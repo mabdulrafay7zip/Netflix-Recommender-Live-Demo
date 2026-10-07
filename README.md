@@ -1,3 +1,4 @@
+[![tests](https://github.com/mabdulrafay7zip/Netflix-Recommender-Live-Demo/actions/workflows/tests.yml/badge.svg)](https://github.com/mabdulrafay7zip/Netflix-Recommender-Live-Demo/actions/workflows/tests.yml)
 # 🎬 Netflix Recommendation System
 
 A content-based movie & TV show recommender over the **8,790-title Netflix
