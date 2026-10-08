@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Netflix Recommendation System — Muhammad Abdul Rafay (mabdulrafay7zip)</title>
-<meta name="description" content="Live Netflix Recommendation System by Muhammad Abdul Rafay (GitHub: mabdulrafay7zip) — BS Artificial Intelligence student at Air University Islamabad, ML Intern. TF-IDF + cosine similarity over 8,790 Netflix titles.">
+<meta name="description" content="Live Netflix Recommendation System by Muhammad Abdul Rafay (GitHub: mabdulrafay7zip) — BS Artificial Intelligence student at Air University Islamabad, ML Intern. TF-IDF + cosine similarity over 8,787 Netflix titles.">
 <meta name="author" content="Muhammad Abdul Rafay">
 <meta name="keywords" content="Muhammad Abdul Rafay, mabdulrafay7zip, Netflix Recommendation System, machine learning, recommender system, Air University">
 <meta property="og:title" content="Netflix Recommendation System — Muhammad Abdul Rafay (mabdulrafay7zip)">
-<meta property="og:description" content="Live Netflix Recommendation System by Muhammad Abdul Rafay (GitHub: mabdulrafay7zip) — BS Artificial Intelligence student at Air University Islamabad, ML Intern. TF-IDF + cosine similarity over 8,790 Netflix titles.">
+<meta property="og:description" content="Live Netflix Recommendation System by Muhammad Abdul Rafay (GitHub: mabdulrafay7zip) — BS Artificial Intelligence student at Air University Islamabad, ML Intern. TF-IDF + cosine similarity over 8,787 Netflix titles.">
 <meta property="og:type" content="website">
 <style>
   :root{
@@ -174,6 +174,68 @@
     #go { width: 100%; }
     nav .by { display: none; }
   }
+
+  /* ---------- v7: beginner info upgrade ---------- */
+  section { scroll-margin-top: 86px; }
+  nav .links { display: flex; gap: 20px; }
+  nav .links a { color: var(--mut); text-decoration: none; font-size: .92rem; font-weight: 600; }
+  nav .links a:hover { color: #fff; }
+  .hero .plain {
+    max-width: 720px; margin: 16px auto 0; padding: 13px 18px;
+    background: rgba(70,211,105,.08); border: 1px solid rgba(70,211,105,.35);
+    border-radius: 12px; color: #d8f5e0; font-size: .99rem; line-height: 1.55;
+  }
+  .hero .plain b { color: #fff; }
+  .hint { text-align: center; color: var(--mut); font-size: .95rem; margin: 16px auto 0; max-width: 780px; line-height: 1.55; }
+  .hint b { color: #ffd9db; }
+  .card .why {
+    margin-top: 10px; padding: 9px 12px; border-radius: 10px;
+    background: rgba(159,211,255,.07); border: 1px solid rgba(159,211,255,.22);
+    color: #cfe8ff; font-size: .87rem; line-height: 1.5;
+  }
+  .card .why b { color: #fff; }
+  .sec { max-width: 1000px; margin: 48px auto 8px; }
+  .sec > h2 { text-align: center; color: #fff; font-size: 1.5rem; margin-bottom: 6px; }
+  .sec > .sub { text-align: center; color: var(--mut); margin-bottom: 22px; font-size: .97rem; line-height: 1.55; }
+  .pipe { display: flex; align-items: stretch; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 6px 0 20px; }
+  .pipe .node {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px;
+    text-align: center; min-width: 128px; flex: 1 1 128px; max-width: 176px;
+  }
+  .pipe .node .ic { font-size: 1.45rem; }
+  .pipe .node b { display: block; color: #fff; font-size: .93rem; margin: 5px 0 3px; }
+  .pipe .node span { color: var(--mut); font-size: .8rem; line-height: 1.4; display: block; }
+  .pipe .arr { align-self: center; color: var(--red2); font-size: 1.25rem; font-weight: 900; }
+  .panel {
+    background: rgba(255,255,255,.035); border: 1px solid var(--line);
+    border-radius: 16px; padding: 22px 24px; line-height: 1.65; color: #cfcfd8; font-size: .97rem;
+  }
+  .panel b { color: #fff; }
+  .panel + .panel { margin-top: 14px; }
+  .legend { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+  .legend span {
+    border: 1px solid var(--line); background: rgba(255,255,255,.04); color: #e8e8ee;
+    border-radius: 999px; padding: 6px 13px; font-size: .86rem;
+  }
+  .legend span b { color: var(--green); }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .fact { background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+  .fact b { display: block; color: #fff; font-size: 1.22rem; margin-bottom: 4px; }
+  .fact span { color: var(--mut); font-size: .9rem; line-height: 1.5; display: block; }
+  details.faq {
+    background: rgba(255,255,255,.035); border: 1px solid var(--line);
+    border-radius: 14px; padding: 16px 20px; margin-bottom: 11px;
+  }
+  details.faq summary { cursor: pointer; color: #fff; font-weight: 700; font-size: 1rem; list-style: none; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::before { content: "▸ "; color: var(--red2); font-weight: 900; }
+  details.faq[open ] summary::before { content: "▾ "; }
+  details.faq p { color: var(--mut); line-height: 1.6; font-size: .94rem; margin-top: 9px; }
+  details.faq p b { color: #ddd; }
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (max-width: 720px) { nav .links { display: none; } .pipe .arr { transform: rotate(90deg); } }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
@@ -185,6 +247,7 @@
 
 <nav>
   <a class="logo" href="#">NETFLIX <span>RECOMMENDER</span></a>
+  <div class="links"><a href="#howtouse">How to use</a><a href="#howitworks">How it works</a><a href="#data">The data</a><a href="#faq">FAQ</a></div>
   <div class="by">by <a href="https://github.com/mabdulrafay7zip" target="_blank" rel="noopener">Muhammad Abdul Rafay</a></div>
 </nav>
 
@@ -192,11 +255,12 @@
   <div class="brand">🎬 Live Machine Learning Demo</div>
   <h1>Find your next <span class="grad">obsession</span>,<br>powered by AI.</h1>
   <p>Pick any title you love — this recommender compares it against
-     <b>8,790 Netflix titles</b> using <b>TF-IDF + cosine similarity</b> and
+     <b>8,787 Netflix titles</b> using <b>TF-IDF + cosine similarity</b> and
      instantly finds your closest matches. Built end-to-end with scikit-learn
      by <b>Muhammad Abdul Rafay</b>, BS Artificial Intelligence, Air University Islamabad.</p>
+  <p class="plain">👋 <b>New here?</b> In plain words: tell this page <b>one movie or show you enjoyed</b>, and its AI finds others like it from the Netflix catalogue — and shows you <b>why</b> each one was picked. No sign-up, nothing to install. Just search below.</p>
   <div class="stats">
-    <div class="stat"><b>8,790</b><i>Titles indexed</i></div>
+    <div class="stat"><b>8,787</b><i>Titles indexed</i></div>
     <div class="stat"><b>TF-IDF</b><i>Vector engine</i></div>
     <div class="stat"><b>Top 8</b><i>Matches per pick</i></div>
     <div class="stat"><b>100%</b><i>Client-side · instant</i></div>
@@ -222,12 +286,13 @@
     <button class="chip" id="lucky">🎲 Surprise me</button>
   </div>
 
+  <p class="hint">👆 <b>How to start:</b> type a title, pick it from the list, press <b>Recommend</b> — or simply tap one of the example chips above.</p>
   <div id="status">⏳ Loading the recommendation data…</div>
 
   <div id="picked"></div>
   <section id="results"></section>
 
-  <section class="how">
+  <section class="how" id="howitworks">
     <h2>⚙️ How it works</h2>
     <p class="sub">Pure content-based filtering — no accounts, no watch history, no user data.</p>
     <div class="steps">
@@ -239,9 +304,103 @@
         <p><b>Cosine similarity</b> ranks the whole catalogue by closeness to your pick — the top 8 win.</p></div>
     </div>
   </section>
+
+  <section class="sec rv" id="howtouse">
+    <h2>🚀 How to use — 3 easy steps</h2>
+    <p class="sub">You do not need to know anything about AI or Netflix. It takes about ten seconds.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1️⃣</div><h3>Pick a title you like</h3>
+        <p>Type the name of <b>any movie or TV show you enjoyed</b> in the search box at the top
+           and select it from the list that appears.</p></div>
+      <div class="step"><div class="n">2️⃣</div><h3>Press “Recommend”</h3>
+        <p>The AI instantly compares your pick against <b>all 8,787 titles</b> in the catalogue
+           and finds the 8 closest matches.</p></div>
+      <div class="step"><div class="n">3️⃣</div><h3>See why each was matched</h3>
+        <p>Every suggestion shows a <b>match score</b> and a <b>“Why this match”</b> note, so you can
+           see exactly what it shares with the title you picked.</p></div>
+    </div>
+  </section>
+
+  <section class="sec rv" id="explain">
+    <h2>🧠 How the AI works — in simple words</h2>
+    <p class="sub">The same journey your pick takes, step by step:</p>
+    <div class="pipe">
+      <div class="node"><div class="ic">🎬</div><b>Your pick</b><span>One title you like</span></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="ic">🏷️</div><b>Keywords</b><span>Genres, cast, director &amp; description become its keyword profile</span></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="ic">🔢</div><b>Numbers</b><span>TF-IDF turns keywords into numbers, rare words counting more</span></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="ic">📐</div><b>Compare</b><span>Cosine similarity measures how close every title is to yours</span></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="ic">🏆</div><b>Top 8 matches</b><span>Ranked by match score, best first</span></div>
+    </div>
+    <div class="panel">
+      <b>What is a “match score”?</b> It is a percentage that says <b>how similar two titles are</b>,
+      based on the keywords they share. 100% would mean two titles have almost identical profiles;
+      a lower score means they share only some ingredients. Try it: <b>Midnight Mass</b> and
+      <b>The Haunting of Hill House</b> are both TV-MA horror shows with the genres
+      “TV Dramas, TV Horror, TV Mysteries” — so the model scores them as a strong match (72.7%).
+      The score is <b>calculated live by this model</b> for this catalogue only. It is
+      <b>not</b> an official Netflix number, and it is <b>not</b> a quality rating — a 60% match
+      can still be a brilliant show; it just shares fewer keywords with your pick.
+      <div class="legend">
+        <span><b>70–100%</b> · very similar flavour</span>
+        <span><b>50–69%</b> · clearly related</span>
+        <span><b>30–49%</b> · some shared ingredients</span>
+        <span><b>Below 30%</b> · distant cousin</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec rv" id="data">
+    <h2>🗂️ About the data</h2>
+    <p class="sub">Real titles, real catalogue information — nothing made up.</p>
+    <div class="facts">
+      <div class="fact"><b>8,787 titles</b><span>Movies and TV shows from the public Netflix catalogue dataset — every single one can be picked and matched.</span></div>
+      <div class="fact"><b>What each title carries</b><span>Type (movie / TV show), release year, age rating, duration, genres, director and country.</span></div>
+      <div class="fact"><b>How matches were built</b><span>Each title's genres, cast, director and description were turned into a keyword profile with scikit-learn (TF-IDF), then compared with cosine similarity.</span></div>
+      <div class="fact"><b>Runs in your browser</b><span>The recommendations were computed by the model and this page simply looks them up instantly — no server, no waiting.</span></div>
+    </div>
+  </section>
+
+  <section class="sec rv" id="faq">
+    <h2>❓ Questions, answered simply</h2>
+    <p class="sub">Everything a first-time visitor usually asks.</p>
+    <details class="faq">
+      <summary>Is this the real Netflix?</summary>
+      <p><b>No.</b> This is a <b>student machine-learning project</b> built by Muhammad Abdul Rafay
+         to demonstrate how recommendation systems work. It uses public Netflix catalogue data,
+         but it is <b>not affiliated with Netflix</b>, and you cannot watch anything here.</p>
+    </details>
+    <details class="faq">
+      <summary>Are the match scores official Netflix scores?</summary>
+      <p><b>No.</b> The percentages are <b>computed by the AI model</b> from keyword similarity
+         inside this catalogue. Netflix never published them — they exist only to show you how
+         close two titles are to each other.</p>
+    </details>
+    <details class="faq">
+      <summary>Do I need an account, sign-up, or my own Netflix history?</summary>
+      <p><b>No.</b> There is no login and nothing is collected. The system knows nothing about
+         you — it only compares the <b>content</b> of titles (genres, cast, director, description),
+         which is why it is called <b>content-based filtering</b>.</p>
+    </details>
+    <details class="faq">
+      <summary>Why did it suggest a title I have never heard of?</summary>
+      <p>Because that title <b>shares keywords</b> with your pick — read the
+         <b>“Why this match”</b> note on its card. Unknown titles are often the best discoveries:
+         they match your taste even though they were never famous.</p>
+    </details>
+    <details class="faq">
+      <summary>What if my title is not found?</summary>
+      <p>Start typing and <b>choose from the suggestion list</b> — the title must exist in the
+         8,787-title catalogue. Very new releases may not be in the dataset yet.</p>
+    </details>
+  </section>
 </main>
 
 <footer>
+  A student machine-learning demo — not affiliated with Netflix.<br>
   Built by <b>Muhammad Abdul Rafay</b> — Machine Learning Intern · BS AI, Air University Islamabad<br>
   GitHub: <a href="https://github.com/mabdulrafay7zip" target="_blank" rel="noopener">@mabdulrafay7zip</a>
   · Portfolio: <a href="https://mabdulrafay7zip.github.io/" target="_blank" rel="noopener">mabdulrafay7zip.github.io</a>
@@ -407,8 +566,13 @@
     recs.forEach(function (r, i) {
       var icon = r.type === "TV Show" ? "📺" : "🎞️";
       var who = "";
-      if (r.director && r.director !== "Unknown") who += "Directed by " + esc(r.director);
-      if (r.country && r.country !== "Unknown") who += (who ? " · " : "") + esc(r.country);
+      var dirOk = r.director && r.director !== "Unknown" && r.director !== "Not Given";
+      var ctryOk = r.country && r.country !== "Unknown" && r.country !== "Not Given";
+      if (dirOk) who += "Directed by " + esc(r.director);
+      if (ctryOk) who += (who ? " · " : "") + esc(r.country);
+      var why = "Shares the genres <b>" + esc(r.genres) + "</b> with your pick" +
+        (r.type ? " · same format (" + esc(r.type) + ")" : "") +
+        (dirOk ? " · director: " + esc(r.director) : "") + ".";
       var initial = esc(String(r.t || "?").trim().charAt(0).toUpperCase());
       html +=
         '<div class="card" data-initial="' + initial + '" style="animation-delay:' + (i * 70) + 'ms">' +
@@ -419,6 +583,7 @@
             " · " + esc(r.rating) + " · " + esc(r.duration) + "</div>" +
           '<div class="genres">' + esc(r.genres) + "</div>" +
           (who ? '<div class="who">' + who + "</div>" : "") +
+          '<div class="why">💡 <b>Why this match:</b> ' + why + "</div>" +
           '<div class="matchbar"><i data-w="' + Math.max(4, Math.min(100, r.match)) + '"></i></div>' +
         "</div>";
     });
@@ -433,6 +598,22 @@
     });
     results.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+})();
+</script>
+
+<script>
+(function () {
+  var els = document.querySelectorAll(".rv");
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(function (e) { e.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(function (e) { io.observe(e); });
 })();
 </script>
 </body>
