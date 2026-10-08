@@ -11,108 +11,196 @@
 <meta property="og:description" content="Live Netflix Recommendation System by Muhammad Abdul Rafay (GitHub: mabdulrafay7zip) — BS Artificial Intelligence student at Air University Islamabad, ML Intern. TF-IDF + cosine similarity over 8,790 Netflix titles.">
 <meta property="og:type" content="website">
 <style>
+  :root{
+    --red:#e50914; --red2:#f6121d; --bg:#0b0b0f; --panel:#15151c;
+    --panel2:#1b1b24; --line:#2a2a35; --txt:#f2f2f5; --mut:#a7a7b3;
+    --green:#46d369;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    background: #141414; color: #e5e5e5;
+    background: var(--bg); color: var(--txt);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                  Helvetica, Arial, sans-serif;
     min-height: 100vh; display: flex; flex-direction: column;
+    overflow-x: hidden;
   }
-  .hero {
-    background: linear-gradient(120deg, #141414 50%, #7a0c12 85%, #e50914 135%);
-    border-bottom: 1px solid #2b2b2b;
-    padding: 44px 20px 36px; text-align: center;
+  /* ---------- ambient background ---------- */
+  .bgfx { position: fixed; inset: 0; z-index: -1; overflow: hidden;
+          background:
+            radial-gradient(900px 500px at 85% -10%, rgba(229,9,20,.28), transparent 60%),
+            radial-gradient(700px 500px at -10% 30%, rgba(120,40,200,.14), transparent 60%),
+            radial-gradient(800px 600px at 50% 115%, rgba(229,9,20,.12), transparent 60%),
+            var(--bg); }
+  .bgfx::after { content:""; position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 26px 26px; opacity:.35; }
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 26px;
+    background: rgba(11,11,15,.72); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
   }
-  .hero .brand { color: #e50914; font-weight: 800; letter-spacing: 3px;
-                 font-size: .85rem; text-transform: uppercase; }
-  .hero h1 { color: #fff; font-size: 2.3rem; margin: 10px 0 10px; }
-  .hero p { color: #d7d7d7; max-width: 720px; margin: 0 auto;
-            font-size: 1rem; line-height: 1.55; }
+  nav .logo { font-weight: 900; letter-spacing: 2.5px; font-size: 1.05rem;
+              color: var(--red); text-transform: uppercase; text-decoration: none; }
+  nav .logo span { color: #fff; }
+  nav .by { color: var(--mut); font-size: .9rem; }
+  nav .by a { color: #fff; font-weight: 700; text-decoration: none; }
+  nav .by a:hover { color: var(--red2); }
+  /* ---------- hero ---------- */
+  .hero { text-align: center; padding: 64px 20px 10px; position: relative; }
+  .hero .brand {
+    display: inline-block; color: #ffb3b7; border: 1px solid rgba(229,9,20,.55);
+    background: rgba(229,9,20,.12); padding: 6px 14px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 2.5px; font-size: .78rem; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6.5vw, 4.3rem); line-height: 1.05; font-weight: 900;
+    margin: 20px auto 14px; max-width: 900px; letter-spacing: -.5px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(92deg, #fff 10%, #ffb3b7 45%, var(--red2) 80%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: #cfcfd8; max-width: 680px; margin: 0 auto; font-size: 1.08rem; line-height: 1.6; }
   .hero p b { color: #fff; }
-  main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto;
-         padding: 28px 16px 10px; }
-  .searchbar { display: flex; gap: 10px; max-width: 760px; margin: 0 auto; }
+  .stats { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 26px auto 4px; }
+  .stat {
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+    border-radius: 14px; padding: 12px 20px; min-width: 132px;
+  }
+  .stat b { display: block; font-size: 1.35rem; color: #fff; }
+  .stat i { font-style: normal; color: var(--mut); font-size: .8rem; letter-spacing: 1px; text-transform: uppercase; }
+  /* ---------- main / search ---------- */
+  main { flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: 30px 16px 10px; }
+  .searchbar { display: flex; gap: 12px; max-width: 780px; margin: 0 auto; }
   .searchwrap { position: relative; flex: 1; }
   #q {
-    width: 100%; padding: 14px 16px; font-size: 1.05rem;
-    background: #1f1f1f; color: #fff; border: 1px solid #3a3a3a;
-    border-radius: 8px; outline: none;
+    width: 100%; padding: 17px 20px; font-size: 1.08rem;
+    background: rgba(255,255,255,.05); color: #fff;
+    border: 1.5px solid var(--line); border-radius: 14px; outline: none;
+    transition: border-color .2s, box-shadow .2s;
   }
-  #q:focus { border-color: #e50914; }
+  #q:focus { border-color: var(--red); box-shadow: 0 0 0 4px rgba(229,9,20,.22); }
   #q:disabled { opacity: .55; }
   #suggest {
-    position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 50;
-    background: #1f1f1f; border: 1px solid #3a3a3a; border-radius: 8px;
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 50;
+    background: #17171f; border: 1px solid var(--line); border-radius: 12px;
     overflow: hidden; display: none; max-height: 320px; overflow-y: auto;
-    box-shadow: 0 12px 32px rgba(0,0,0,.6);
+    box-shadow: 0 18px 44px rgba(0,0,0,.65);
   }
-  #suggest div { padding: 11px 16px; cursor: pointer; font-size: .98rem;
+  #suggest div { padding: 12px 18px; cursor: pointer; font-size: .99rem;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #suggest div:hover, #suggest div.active { background: #e50914; color: #fff; }
-  #suggest div small { color: #aaa; margin-left: 8px; }
-  #suggest div:hover small, #suggest div.active small { color: #ffd7d9; }
+  #suggest div:hover, #suggest div.active { background: var(--red); color: #fff; }
   #go {
-    padding: 14px 26px; font-size: 1.05rem; font-weight: 700; cursor: pointer;
-    background: #e50914; color: #fff; border: none; border-radius: 8px;
-    white-space: nowrap;
+    padding: 17px 30px; font-size: 1.05rem; font-weight: 800; cursor: pointer;
+    background: linear-gradient(180deg, var(--red2), var(--red)); color: #fff;
+    border: none; border-radius: 14px; white-space: nowrap;
+    box-shadow: 0 10px 26px rgba(229,9,20,.35);
+    transition: transform .15s, box-shadow .15s;
   }
-  #go:hover:not(:disabled) { background: #f6121d; }
-  #go:disabled { opacity: .55; cursor: wait; }
-  #status { text-align: center; color: #999; margin: 16px 0 4px;
-            font-size: .95rem; min-height: 1.2em; }
+  #go:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(229,9,20,.45); }
+  #go:disabled { opacity: .55; cursor: wait; box-shadow: none; }
+  .quick { display: flex; gap: 9px; justify-content: center; flex-wrap: wrap; margin: 18px auto 0; max-width: 780px; }
+  .quick span { color: var(--mut); font-size: .9rem; align-self: center; }
+  .chip {
+    background: rgba(255,255,255,.05); color: #eee; border: 1px solid var(--line);
+    padding: 8px 15px; border-radius: 999px; cursor: pointer; font-size: .9rem;
+    transition: all .18s;
+  }
+  .chip:hover { border-color: var(--red); color: #fff; background: rgba(229,9,20,.16); transform: translateY(-1px); }
+  #status { text-align: center; color: var(--mut); margin: 20px 0 4px; font-size: .96rem; min-height: 1.2em; }
+  /* ---------- picked / results ---------- */
   #picked {
-    display: none; background: #1b1b1b; border-left: 5px solid #e50914;
-    border-radius: 10px; padding: 14px 18px; margin: 18px 0 6px;
-    line-height: 1.5;
+    display: none; background: linear-gradient(90deg, rgba(229,9,20,.16), rgba(255,255,255,.03));
+    border: 1px solid rgba(229,9,20,.4); border-left: 5px solid var(--red);
+    border-radius: 14px; padding: 16px 20px; margin: 20px 0 6px; line-height: 1.5;
+    animation: rise .45s ease both;
   }
-  #picked .lbl { color: #e50914; font-weight: 800; letter-spacing: 1px;
-                 font-size: .8rem; }
-  #results h2 { color: #fff; font-size: 1.35rem; margin: 22px 0 16px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 14px; }
+  #picked .lbl { color: #ff8f96; font-weight: 800; letter-spacing: 1.5px; font-size: .78rem; }
+  #picked b { font-size: 1.15rem; }
+  #results h2 { color: #fff; font-size: 1.5rem; margin: 26px 0 18px; font-weight: 800; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
   .card {
-    background: #1b1b1b; border: 1px solid #2e2e2e; border-radius: 12px;
-    padding: 16px 18px; position: relative;
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px 16px;
+    position: relative; overflow: hidden;
+    transition: transform .22s, border-color .22s, box-shadow .22s;
+    animation: rise .5s ease both;
   }
-  .card .rank { color: #e50914; font-weight: 800; font-size: .78rem;
-                letter-spacing: 1px; text-transform: uppercase; }
-  .card h3 { color: #fff; font-size: 1.12rem; margin: 4px 0 6px;
-             line-height: 1.3; padding-right: 74px; }
-  .card .meta { color: #c9c9c9; font-size: .92rem; margin-bottom: 6px; }
+  .card::before {
+    content: attr(data-initial); position: absolute; right: -8px; bottom: -34px;
+    font-size: 7.5rem; font-weight: 900; color: rgba(255,255,255,.045);
+    line-height: 1; pointer-events: none;
+  }
+  .card:hover { transform: translateY(-5px); border-color: rgba(229,9,20,.55);
+                box-shadow: 0 18px 38px rgba(0,0,0,.5), 0 0 0 1px rgba(229,9,20,.25); }
+  .card .rank { color: #ff8f96; font-weight: 800; font-size: .76rem;
+                letter-spacing: 1.5px; text-transform: uppercase; }
+  .card h3 { color: #fff; font-size: 1.16rem; margin: 5px 0 7px; line-height: 1.3; padding-right: 86px; }
+  .card .meta { color: #cfcfd8; font-size: .92rem; margin-bottom: 6px; }
   .card .genres { color: #9fd3ff; font-size: .9rem; margin-bottom: 6px; }
-  .card .who { color: #a8a8a8; font-size: .88rem; line-height: 1.45; }
+  .card .who { color: var(--mut); font-size: .88rem; line-height: 1.45; }
   .badge {
-    position: absolute; top: 14px; right: 14px;
-    background: #12351c; color: #46d369; border: 1px solid #1f5c31;
-    font-weight: 700; font-size: .82rem; padding: 3px 9px; border-radius: 999px;
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(70,211,105,.12); color: var(--green); border: 1px solid rgba(70,211,105,.45);
+    font-weight: 800; font-size: .82rem; padding: 4px 10px; border-radius: 999px;
   }
-  .how {
-    max-width: 760px; margin: 30px auto 6px; color: #a8a8a8;
-    font-size: .93rem; line-height: 1.6; text-align: center;
-  }
-  .how b { color: #ddd; }
-  footer {
-    text-align: center; color: #8c8c8c; font-size: .9rem;
-    padding: 22px 16px 28px; border-top: 1px solid #262626; margin-top: 26px;
-  }
-  footer a { color: #e50914; text-decoration: none; font-weight: 600; }
+  .matchbar { height: 6px; background: rgba(255,255,255,.08); border-radius: 99px; margin-top: 12px; overflow: hidden; }
+  .matchbar i { display: block; height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #ff7847, var(--red2)); width: 0;
+    transition: width .8s ease .15s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  /* ---------- how it works ---------- */
+  .how { max-width: 1000px; margin: 44px auto 8px; }
+  .how h2 { text-align: center; color: #fff; font-size: 1.5rem; margin-bottom: 6px; }
+  .how .sub { text-align: center; color: var(--mut); margin-bottom: 22px; font-size: .97rem; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .step { background: rgba(255,255,255,.035); border: 1px solid var(--line);
+          border-radius: 16px; padding: 20px; }
+  .step .n { font-size: 1.5rem; }
+  .step h3 { color: #fff; margin: 8px 0 6px; font-size: 1.05rem; }
+  .step p { color: var(--mut); font-size: .93rem; line-height: 1.55; }
+  .step p b { color: #ddd; }
+  /* ---------- footer ---------- */
+  footer { text-align: center; color: #8b8b96; font-size: .92rem;
+           padding: 26px 16px 32px; border-top: 1px solid rgba(255,255,255,.07); margin-top: 34px; }
+  footer a { color: var(--red2); text-decoration: none; font-weight: 700; }
   footer a:hover { text-decoration: underline; }
   @media (max-width: 560px) {
-    .hero h1 { font-size: 1.7rem; }
     .searchbar { flex-direction: column; }
     #go { width: 100%; }
+    nav .by { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
+<div class="bgfx"></div>
+
+<nav>
+  <a class="logo" href="#">NETFLIX <span>RECOMMENDER</span></a>
+  <div class="by">by <a href="https://github.com/mabdulrafay7zip" target="_blank" rel="noopener">Muhammad Abdul Rafay</a></div>
+</nav>
 
 <header class="hero">
-  <div class="brand">Netflix&nbsp;Recommender</div>
-  <h1>🎬 Netflix Recommendation System</h1>
-  <p>TF-IDF + Cosine Similarity over <b>8,790 titles</b> — by
-     <b>Muhammad Abdul Rafay</b> (Machine Learning Intern).
-     Pick a title you love and get instant content-based recommendations —
-     precomputed with scikit-learn, served as a fully static page.</p>
+  <div class="brand">🎬 Live Machine Learning Demo</div>
+  <h1>Find your next <span class="grad">obsession</span>,<br>powered by AI.</h1>
+  <p>Pick any title you love — this recommender compares it against
+     <b>8,790 Netflix titles</b> using <b>TF-IDF + cosine similarity</b> and
+     instantly finds your closest matches. Built end-to-end with scikit-learn
+     by <b>Muhammad Abdul Rafay</b>, BS Artificial Intelligence, Air University Islamabad.</p>
+  <div class="stats">
+    <div class="stat"><b>8,790</b><i>Titles indexed</i></div>
+    <div class="stat"><b>TF-IDF</b><i>Vector engine</i></div>
+    <div class="stat"><b>Top 8</b><i>Matches per pick</i></div>
+    <div class="stat"><b>100%</b><i>Client-side · instant</i></div>
+  </div>
 </header>
 
 <main>
@@ -125,22 +213,38 @@
     <button id="go" disabled>🎬 Recommend</button>
   </div>
 
+  <div class="quick">
+    <span>Try:</span>
+    <button class="chip" data-title="Midnight Mass">Midnight Mass</button>
+    <button class="chip" data-title="Money Heist">Money Heist</button>
+    <button class="chip" data-title="Stranger Things">Stranger Things</button>
+    <button class="chip" data-title="The Witcher">The Witcher</button>
+    <button class="chip" id="lucky">🎲 Surprise me</button>
+  </div>
+
   <div id="status">⏳ Loading the recommendation data…</div>
 
   <div id="picked"></div>
   <section id="results"></section>
 
-  <p class="how">
-    <b>How it works:</b> every title becomes a text profile from its genres,
-    country, director, type and rating. <b>TF-IDF</b> vectorises those
-    profiles and <b>cosine similarity</b> ranks the catalogue by closeness to
-    your pick — pure content-based filtering, no user data. Built as a standalone end-to-end ML project.
-  </p>
+  <section class="how">
+    <h2>⚙️ How it works</h2>
+    <p class="sub">Pure content-based filtering — no accounts, no watch history, no user data.</p>
+    <div class="steps">
+      <div class="step"><div class="n">🧬</div><h3>1 · Title profiles</h3>
+        <p>Every title becomes a text profile from its <b>genres, country, director, type and rating</b>.</p></div>
+      <div class="step"><div class="n">🧮</div><h3>2 · TF-IDF vectors</h3>
+        <p>Profiles are vectorised with <b>TF-IDF</b>, so distinctive words count more than common ones.</p></div>
+      <div class="step"><div class="n">🎯</div><h3>3 · Cosine ranking</h3>
+        <p><b>Cosine similarity</b> ranks the whole catalogue by closeness to your pick — the top 8 win.</p></div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  Built by <b>Muhammad Abdul Rafay</b> — Machine Learning Intern<br>
+  Built by <b>Muhammad Abdul Rafay</b> — Machine Learning Intern · BS AI, Air University Islamabad<br>
   GitHub: <a href="https://github.com/mabdulrafay7zip" target="_blank" rel="noopener">@mabdulrafay7zip</a>
+  · Portfolio: <a href="https://mabdulrafay7zip.github.io/" target="_blank" rel="noopener">mabdulrafay7zip.github.io</a>
 </footer>
 
 <script>
@@ -201,7 +305,7 @@
     }
     if (!matches.length) { closeSuggest(); return; }
     suggest.innerHTML = "";
-    matches.forEach(function (t, idx) {
+    matches.forEach(function (t) {
       var div = document.createElement("div");
       div.textContent = t;
       div.addEventListener("mousedown", function (ev) {
@@ -260,6 +364,18 @@
 
   goBtn.addEventListener("click", recommend);
 
+  document.querySelectorAll(".chip[data-title]").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      if (!DATA) return;
+      pick(chip.getAttribute("data-title"));
+    });
+  });
+  document.getElementById("lucky").addEventListener("click", function () {
+    if (!DATA || !TITLES.length) return;
+    var t = TITLES[Math.floor(Math.random() * TITLES.length)];
+    if (DATA.recs[t]) pick(t);
+  });
+
   function recommend() {
     if (!DATA) return;
     var title = selected || input.value.trim();
@@ -293,8 +409,9 @@
       var who = "";
       if (r.director && r.director !== "Unknown") who += "Directed by " + esc(r.director);
       if (r.country && r.country !== "Unknown") who += (who ? " · " : "") + esc(r.country);
+      var initial = esc(String(r.t || "?").trim().charAt(0).toUpperCase());
       html +=
-        '<div class="card">' +
+        '<div class="card" data-initial="' + initial + '" style="animation-delay:' + (i * 70) + 'ms">' +
           '<div class="badge">🍿 ' + r.match.toFixed(1) + "% match</div>" +
           '<div class="rank">#' + (i + 1) + " recommendation</div>" +
           "<h3>" + esc(r.t) + "</h3>" +
@@ -302,10 +419,18 @@
             " · " + esc(r.rating) + " · " + esc(r.duration) + "</div>" +
           '<div class="genres">' + esc(r.genres) + "</div>" +
           (who ? '<div class="who">' + who + "</div>" : "") +
+          '<div class="matchbar"><i data-w="' + Math.max(4, Math.min(100, r.match)) + '"></i></div>' +
         "</div>";
     });
     html += "</div>";
     results.innerHTML = html;
+    results.querySelectorAll(".matchbar i").forEach(function (bar) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          bar.style.width = bar.getAttribute("data-w") + "%";
+        });
+      });
+    });
     results.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 })();
