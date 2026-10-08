@@ -2,13 +2,13 @@
 🎬 Netflix Recommendation System — Streamlit live demo
 ======================================================
 A content-based recommender built with TF-IDF + cosine similarity over the
-8,790-title Netflix catalogue. This is the live-demo version of Task 1 from
-the Auspify Technologies ML internship (recommendation_system.py): every
+8,790-title Netflix catalogue. This is the live-demo version of an end-to-end ML project
+(recommendation_system.py): every
 title is turned into one short "profile" string built from its genres
 (listed_in), country, director, type and rating; TF-IDF vectorises those
 profiles and cosine similarity finds the closest titles.
 
-Author: Muhammad Abdul Rafay — ML Intern @ Auspify Technologies
+Author: Muhammad Abdul Rafay — Machine Learning Intern
 GitHub: https://github.com/mabdulrafay7zip
 """
 
@@ -246,14 +246,13 @@ def main() -> None:
             "country, director, type and rating. **TF-IDF** turns those profiles "
             "into vectors and **cosine similarity** ranks the catalogue by how "
             "close each title is to the one you picked — no user data needed, "
-            "pure content-based filtering. Built for the Auspify Technologies "
-            "ML internship (Task 1)."
+            "pure content-based filtering. Built as an end-to-end ML project."
         )
 
     st.markdown(
         """
         <div class="footer">
-          Built by <b>Muhammad Abdul Rafay</b> — ML Intern @ Auspify Technologies |
+          Built by <b>Muhammad Abdul Rafay</b> — Machine Learning Intern |
           GitHub: <a href="https://github.com/mabdulrafay7zip">github.com/mabdulrafay7zip</a>
         </div>
         """,

@@ -1,4 +1,3 @@
-[![tests](https://github.com/mabdulrafay7zip/Netflix-Recommender-Live-Demo/actions/workflows/tests.yml/badge.svg)](https://github.com/mabdulrafay7zip/Netflix-Recommender-Live-Demo/actions/workflows/tests.yml)
 # 🎬 Netflix Recommendation System
 
 A content-based movie & TV show recommender over the **8,790-title Netflix
@@ -7,7 +6,7 @@ interactive **Streamlit** web app. Pick any title and instantly get the most
 similar titles, each with a match score, type, year, rating, genres and
 director/country details.
 
-Live Demo: https://mabdulrafay7zip.github.io/Netflix-Recommender-Live-Demo/
+**Live Demo:** (deployed on Streamlit Cloud)
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-app-FF4B4B)
@@ -40,12 +39,10 @@ horror neighbours at the top:
 
 ## Project context
 
-This app is the live-demo version of **Task 1** of the **Auspify
-Technologies Machine Learning internship** (Oct–Nov 2026), where the same
-recommender was first built as a standalone Python script
-(`recommendation_system.py`). The full internship project set — content-type
-prediction (91.9% accuracy), rating classification and K-Means content
-segmentation — lives on GitHub:
+This app is the live-demo version of an end-to-end ML project,
+first built as a standalone Python script (`recommendation_system.py`).
+The wider project set — content-type prediction (91.9% accuracy), rating
+classification and K-Means content segmentation — lives on GitHub:
 [github.com/mabdulrafay7zip](https://github.com/mabdulrafay7zip)
 
 ## Run it locally
@@ -68,5 +65,5 @@ Then open the local URL Streamlit prints (default http://localhost:8501).
 ## Author
 
 **Muhammad Abdul Rafay** — BS Artificial Intelligence, Air University
-Islamabad · ML Intern @ Auspify Technologies ·
+Islamabad · Machine Learning Intern ·
 [github.com/mabdulrafay7zip](https://github.com/mabdulrafay7zip)
