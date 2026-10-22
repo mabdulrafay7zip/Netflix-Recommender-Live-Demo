@@ -25,6 +25,11 @@ director/country details.
 
 No user ratings or history are needed — pure content-based filtering.
 
+> **Why two catalogue numbers?** `data.csv` contains 8,790 rows, but 3 titles
+> are duplicated. `load_catalogue()` in `app.py` drops duplicates (keeping the
+> first entry), so the model works with 8,787 unique titles — the count the
+> test suite asserts in `tests/test_recommender.py`.
+
 ## Example
 
 Asking for titles similar to **Midnight Mass** returns its Mike Flanagan /
