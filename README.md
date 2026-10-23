@@ -37,11 +37,11 @@ horror neighbours at the top:
 
 | # | Title | Match |
 |---|-------|-------|
-| 1 | The Haunting of Hill House | 72.7% |
-| 2 | Ratched | 72.7% |
-| 3 | The Haunting of Bly Manor | 72.7% |
+| 1 | The Haunting of Bly Manor | 72.7% |
+| 2 | The Haunting of Hill House | 72.7% |
+| 3 | Ratched | 72.7% |
 | 4 | Brand New Cherry Flavor | 72.7% |
-| 5 | The Originals | 68.8% |
+| 5 | The Originals | 68.7% |
 
 ## Project context
 
