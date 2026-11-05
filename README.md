@@ -43,6 +43,17 @@ horror neighbours at the top:
 | 4 | Brand New Cherry Flavor | 72.7% |
 | 5 | The Originals | 68.7% |
 
+## Reading the match score
+
+The **Match %** shown next to each recommendation is the cosine similarity
+between that title's TF-IDF profile and the title you picked, multiplied by
+100 and rounded to one decimal place — so 72.7% means a similarity of 0.727.
+A higher score means more shared profile tokens (genres, country, director,
+type and rating); it is a content-similarity score, not a quality rating or
+a user rating. The title you picked scores 100% against itself, so it is
+always excluded from its own recommendation list, and scores rounded to one
+decimal can display as equal when they are only very close.
+
 ## Project context
 
 This app is the live-demo version of an end-to-end ML project,
