@@ -71,6 +71,15 @@ streamlit run app.py
 
 Then open the local URL Streamlit prints (default http://localhost:8501).
 
+## Using the Streamlit app
+
+- Pick a title from the search box — it lists all 8,787 titles alphabetically and starts on **Midnight Mass**.
+- Use the "Number of recommendations" slider to ask for 5–15 results (default 10). The GitHub Pages demo always shows the top 8 precomputed matches instead.
+- Press **🎬 Get Recommendations**. Your pick is shown in a "YOU PICKED:" band (type · year · rating · genres), then each recommendation appears as a card with its rank, type · year · rating · duration, genres, a "Directed by … from … — genres" line, and its 🍿 match %.
+- Open the **📋 View as a table** expander to see the same recommendations as a table (Title, Match score, Type, Director, Country, Year, Rating, Duration, Genres).
+- The **ℹ️ How does it work?** expander explains the TF-IDF + cosine approach in one paragraph — the same summary as "How it works" above.
+- The model is built once and cached (`@st.cache_data` / `@st.cache_resource` in `app.py`), so picking another title and pressing the button again is instant — no reload.
+
 ## Tests
 
 The core logic in `app.py` is covered by a pytest suite in `tests/`
