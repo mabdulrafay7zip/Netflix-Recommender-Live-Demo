@@ -327,7 +327,7 @@
     <div class="pipe">
       <div class="node"><div class="ic">🎬</div><b>Your pick</b><span>One title you like</span></div>
       <div class="arr">→</div>
-      <div class="node"><div class="ic">🏷️</div><b>Keywords</b><span>Genres, cast, director &amp; description become its keyword profile</span></div>
+      <div class="node"><div class="ic">🏷️</div><b>Keywords</b><span>Genres, country, director, type &amp; rating become its keyword profile</span></div>
       <div class="arr">→</div>
       <div class="node"><div class="ic">🔢</div><b>Numbers</b><span>TF-IDF turns keywords into numbers, rare words counting more</span></div>
       <div class="arr">→</div>
@@ -359,7 +359,7 @@
     <div class="facts">
       <div class="fact"><b>8,787 titles</b><span>Movies and TV shows from the public Netflix catalogue dataset — every single one can be picked and matched.</span></div>
       <div class="fact"><b>What each title carries</b><span>Type (movie / TV show), release year, age rating, duration, genres, director and country.</span></div>
-      <div class="fact"><b>How matches were built</b><span>Each title's genres, cast, director and description were turned into a keyword profile with scikit-learn (TF-IDF), then compared with cosine similarity.</span></div>
+      <div class="fact"><b>How matches were built</b><span>Each title's genres, country, director, type and rating were turned into a keyword profile with scikit-learn (TF-IDF), then compared with cosine similarity.</span></div>
       <div class="fact"><b>Runs in your browser</b><span>The recommendations were computed by the model and this page simply looks them up instantly — no server, no waiting.</span></div>
     </div>
   </section>
@@ -382,7 +382,7 @@
     <details class="faq">
       <summary>Do I need an account, sign-up, or my own Netflix history?</summary>
       <p><b>No.</b> There is no login and nothing is collected. The system knows nothing about
-         you — it only compares the <b>content</b> of titles (genres, cast, director, description),
+         you — it only compares the <b>content</b> of titles (genres, country, director, type and rating),
          which is why it is called <b>content-based filtering</b>.</p>
     </details>
     <details class="faq">
